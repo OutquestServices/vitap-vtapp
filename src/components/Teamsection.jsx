@@ -39,7 +39,7 @@ export function Team() {
     },
   ];
   return (
-    <div className="relative bg-black flex flex-col items-center justify-center h-fit">
+    <div className="relative bg-black flex-col items-center justify-center h-fit hidden md:flex">
       <h1 className="text-4xl font-semibold text-white">Our Team</h1>
       <AnimatedTestimonials testimonials={testimonials} />
     </div>

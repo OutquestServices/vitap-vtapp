@@ -9,7 +9,7 @@ export function Tshirts() {
   const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="bg-black">
+    <div className="bg-black pb-10">
       <h1 className="text-4xl font-semibold text-white text-center py-8">
         T-Shirts
       </h1>
@@ -19,8 +19,9 @@ export function Tshirts() {
         <div className="relative z-10">
           <Lens hovering={hovering} setHovering={setHovering}>
             <Image
-              src="/about.png"
+              src="/tshirt.jpeg"
               alt="image"
+              layout="responsive" // This makes the image responsive to its container's size
               width={500}
               height={500}
               className="rounded-2xl"
@@ -35,8 +36,8 @@ export function Tshirts() {
             <h2 className="text-white text-2xl text-left font-bold">
               Apple Vision Pro
             </h2>
-            <p className="text-neutral-200 text-left  mt-4">
-              The all new apple vision pro was the best thing that happened
+            <p className="text-neutral-200 text-left mt-4">
+              The all-new apple vision pro was the best thing that happened
               around 8 months ago, not anymore.
             </p>
           </motion.div>
@@ -421,8 +422,8 @@ const Rays = ({ className }) => {
           y2="342.58"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.214779" stopColor="#0000FF" />
-          <stop offset="0.781583" stopColor="#0000FF" stopOpacity="0" />
+          <stop offset="0.214779" stopColor="#87CEEB" />
+          <stop offset="0.781583" stopColor="#87CEEB" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_120_7480"

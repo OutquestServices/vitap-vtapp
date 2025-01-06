@@ -1,19 +1,9 @@
 "use client";
 import { BackgroundLines } from "@/components/HeroSection/background-lines";
-import { FloatingDock } from "@/components/HeroSection/floating-dock";
 import dynamic from "next/dynamic";
-import Head from "next/head";
-import { IconHome, IconSettings, IconUser } from "@tabler/icons-react";
-import Image from "next/image";
-import { Button } from "@/components/HeroSection/moving-border";
 import { Cover } from "@/components/HeroSection/cover";
 import { PlaceholdersAndVanishInput } from "@/components/HeroSection/placeholders-and-vanish-input";
-import { About } from "./Aboutsection";
-import {
-  IconCalendarEventFilled,
-  IconTicket,
-  IconUsers,
-} from "@tabler/icons-react/dist/esm/tabler-icons-react";
+import Navbar from "./Home/Navbar";
 
 const Scene = dynamic(() => import("@/components/HeroSection/scene"), {
   ssr: false,
@@ -29,52 +19,11 @@ export default function Hero() {
     e.preventDefault();
     console.log("submitted");
   };
-  const items = [
-    {
-      title: "Home",
-      icon: <IconHome color="white" />,
-      href: "/",
-    },
-    {
-      title: "Shedule",
-      icon: <IconCalendarEventFilled color="white" />,
-      href: "/shedule",
-    },
-    {
-      title: "Events",
-      icon: <IconTicket color="white" />,
-      href: "/events",
-    },
-    {
-      title: "Team",
-      icon: <IconUsers color="white" />,
-      href: "/team",
-    },
-    {
-      title: "Admin",
-      icon: <IconUser color="white" />,
-      href: "/admin",
-    },
-  ];
+
   return (
     <BackgroundLines>
       <div className="h-full bg-black flex flex-col lg:items-center lg:justify-start lg:p-14 pb-0">
-        <div className="relative z-30 w-full flex items-center justify-between">
-          <div className="relative w-[200px] h-[80px]">
-            <Image
-              src="/vtapp.png"
-              layout="fill"
-              objectFit="contain"
-              alt="VT App Logo"
-            />
-          </div>
-          <div className="relative flex w-auto items-center justify-center">
-            <FloatingDock items={items} />
-          </div>
-          <div className="relative w-[200px] h-[80px] hidden md:block">
-            <Button>Grab Tickets</Button>
-          </div>
-        </div>
+        <Navbar />
 
         <div className="relative w-full h-[70vh] md:h-screen bg-none flex items-center justify-center">
           <Scene />
