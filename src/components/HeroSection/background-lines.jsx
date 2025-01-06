@@ -5,7 +5,7 @@ import React from "react";
 
 export const BackgroundLines = ({ children, className, svgOptions }) => {
   return (
-    <div className={cn("h-screen w-full bg-black", className)}>
+    <div className={cn("h-full md:h-screen w-full bg-black", className)}>
       <SVG svgOptions={svgOptions} />
       {children}
     </div>

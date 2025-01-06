@@ -58,7 +58,7 @@ export default function Hero() {
   ];
   return (
     <BackgroundLines>
-      <div className="h-full bg-black flex flex-col lg:items-center lg:justify-start lg:p-14">
+      <div className="h-full bg-black flex flex-col lg:items-center lg:justify-start lg:p-14 pb-0">
         <div className="relative z-30 w-full flex items-center justify-between">
           <div className="relative w-[200px] h-[80px]">
             <Image
@@ -76,7 +76,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative w-full h-[1200px] bg-none flex items-center justify-center">
+        <div className="relative w-full h-[70vh] md:h-screen bg-none flex items-center justify-center">
           <Scene />
         </div>
 
