@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { FloatingDock } from "../HeroSection/floating-dock";
 import { Button } from "../HeroSection/moving-border";
-import { IconHome, IconUser } from "@tabler/icons-react";
+import { IconHeartHandshake, IconHome, IconUser } from "@tabler/icons-react";
 import {
   IconCalendarEventFilled,
   IconTicket,
@@ -19,9 +19,9 @@ export default function Navbar() {
       href: "/",
     },
     {
-      title: "Shedule",
+      title: "Schedule",
       icon: <IconCalendarEventFilled color="white" />,
-      href: "/shedule",
+      href: "/schedule",
     },
     {
       title: "Events",
@@ -34,9 +34,9 @@ export default function Navbar() {
       href: "/team",
     },
     {
-      title: "Admin",
-      icon: <IconUser color="white" />,
-      href: "/admin",
+      title: "Sponsors",
+      icon: <IconHeartHandshake color="white" />,
+      href: "/sponsors",
     },
   ];
   return (
