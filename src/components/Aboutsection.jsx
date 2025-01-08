@@ -12,7 +12,7 @@ export function About() {
               <h1 className="text-2xl md:text-4xl font-semibold text-white">
                 All About <br />
                 <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                  VTAPP 2025
+                  V-TAPP 2025
                 </span>
               </h1>
             </>

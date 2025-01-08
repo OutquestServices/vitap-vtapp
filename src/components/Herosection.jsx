@@ -31,7 +31,7 @@ export default function Hero() {
 
         <div className="absolute top-[340px] md:top-[460px] lg:top-[490px] w-full text-center">
           <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center mt-2 md:mt-4 lg:mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-600 via-neutral-400 to-neutral-100 dark:from-neutral-800 dark:via-white dark:to-white">
-            Welcome to International <br /> Tech Fest <Cover>VTAPP 2025</Cover>
+            Welcome to International <br /> Tech Fest <Cover>V-TAPP 2025</Cover>
             <br />
             <span className="text-[16px] md:text-md lg:text-3xl text-black text-opacity-50">
               February 8 & 9, 2025
