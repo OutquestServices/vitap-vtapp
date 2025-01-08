@@ -1,6 +1,6 @@
 import { handlers } from "../../../../../auth";
 export const { GET, POST } = handlers;
-export const config = {
+export const runtime = {
     runtime: 'edge'
   };
   
