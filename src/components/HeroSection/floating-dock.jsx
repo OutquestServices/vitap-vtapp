@@ -33,7 +33,7 @@ const FloatingDockMobile = ({ items, className }) => {
                 {item.title}
               </a>
             ))}
-            <a href="#" className="block p-4">
+            <a href="/tickets" className="block p-4">
               Grab Tickets
             </a>
           </div>

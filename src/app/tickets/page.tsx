@@ -18,7 +18,7 @@ export default function TicketForm() {
   const [date, setDate] = useState<Date>();
 
   return (
-    <div className="bg-black">
+    <div className="bg-black md:py-10">
       <Navbar />
       <div className="min-h-screen bg-[black] flex items-center justify-center bg-dot-white/[0.1]">
         <div className="relative">
@@ -80,7 +80,7 @@ export default function TicketForm() {
               </div>
 
               <Button className="w-96 h-12 text-lg bg-blue-500 hover:bg-blue-900 text-white mt-8">
-                Grab ticket!
+                Generate ticket!
               </Button>
             </div>
           </div>

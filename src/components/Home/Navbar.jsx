@@ -21,7 +21,7 @@ export default function Navbar() {
     {
       title: "Schedule",
       icon: <IconCalendarEventFilled color="white" />,
-      href: "/schedule",
+      href: "#",
     },
     {
       title: "Events",
@@ -36,7 +36,7 @@ export default function Navbar() {
     {
       title: "Sponsors",
       icon: <IconHeartHandshake color="white" />,
-      href: "/sponsors",
+      href: "#",
     },
   ];
   return (
@@ -53,7 +53,7 @@ export default function Navbar() {
         <FloatingDock items={items} />
       </div>
       <div className="relative w-[200px] h-[80px] hidden md:block">
-        <a href="#">
+        <a href="/tickets">
           <Button>Grab Tickets</Button>
         </a>
       </div>
