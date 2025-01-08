@@ -1,5 +1,6 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
+import { Footer } from "../components/Home/Fotter";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
