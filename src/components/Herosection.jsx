@@ -1,5 +1,5 @@
 "use client";
-import { BackgroundLines } from "@/components/HeroSection/background-lines";
+import { BackgroundLines } from "./HeroSection/background-lines.jsx";
 import dynamic from "next/dynamic";
 import { Cover } from "@/components/HeroSection/cover";
 import { PlaceholdersAndVanishInput } from "@/components/HeroSection/placeholders-and-vanish-input";
