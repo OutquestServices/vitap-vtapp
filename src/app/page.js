@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Home/Fotter";
 import { About } from "../components/Aboutsection";
 import Hero from "../components/Herosection";
 import { Team } from "../components/Teamsection";
@@ -10,6 +11,7 @@ export default function Page() {
       <About />
       <Team />
       <Tshirts />
+      <Footer />
     </div>
   );
 }
