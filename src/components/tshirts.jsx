@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -9,11 +9,11 @@ export function Tshirts() {
   const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="bg-black pb-10">
+    <div className={`bg-black pb-10`}>
       <h1 className="text-4xl font-semibold text-white text-center py-8">
         T-Shirts
       </h1>
-      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 ">
+      <div className={`w-full relative rounded-3xl overflow-hidden max-w-[75vw] md:max-w-96 mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8`}>
         <Rays />
         <Beams />
         <div className="relative z-10">
@@ -21,7 +21,7 @@ export function Tshirts() {
             <Image
               src="/tshirt.jpeg"
               alt="image"
-              layout="responsive" // This makes the image responsive to its container's size
+              layout="responsive"
               width={500}
               height={500}
               className="rounded-2xl"
@@ -37,8 +37,7 @@ export function Tshirts() {
               Apple Vision Pro
             </h2>
             <p className="text-neutral-200 text-left mt-4">
-              The all-new apple vision pro was the best thing that happened
-              around 8 months ago, not anymore.
+              The all-new apple vision pro was the best thing that happened around 8 months ago, not anymore.
             </p>
           </motion.div>
         </div>

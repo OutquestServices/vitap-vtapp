@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Lexend } from "next/font/google";
 import "./globals.css";
 import { Footer } from "../components/Home/Fotter";
 
-const inter = Inter({ subsets: ["latin"] });
+const lexend = Lexend({ subsets: ["latin"] });
 
 export const metadata = {
   title: "V-TAPP 2025",
@@ -12,9 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children} <Footer />
-      </body>
+      <body className={lexend.className}>{children}</body>
     </html>
   );
 }
