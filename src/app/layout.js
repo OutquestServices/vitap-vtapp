@@ -1,6 +1,6 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import { Footer } from "../components/Home/Fotter";
+import Providers from "@/components/providers";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -12,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={lexend.className}>{children}</body>
+      <body className={lexend.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
