@@ -33,8 +33,7 @@
     "swiper": "^11.2.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.163.0",
-    "node":"18.0.1"
+    "three": "^0.163.0"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.7",
