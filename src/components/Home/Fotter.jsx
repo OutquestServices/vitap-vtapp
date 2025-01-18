@@ -21,7 +21,7 @@ export function Footer() {
         </div>
 
         {/* Contact and Social Information */}
-        <div className="relative">
+        <div className="relative md:top-5">
           <div className="text-white">
             <h3 className="text-lg font-bold">Contact</h3>
             <p>+91 xxxxx xxxxx</p>
@@ -33,13 +33,12 @@ export function Footer() {
         </div>
 
         {/* Social and QR */}
-        <div className="relative">
-          <div className="text-white">
+        <div className="relative md:top-5">
+          <div className="text-white flex flex-col">
             <h3 className="text-lg font-bold">Social</h3>
-
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <p>Twitter</p>
+            <a href="https://www.instagram.com/vtapp.vitap/">Instagram</a>
+            <a href="https://www.facebook.com/vtapp.vitap/">Facebook</a>
+            {/* <a>Twitter</a> */}
             <button
               onClick={() => signIn("google")}
               className="cursor-pointer underline bg-transparent border-none text-inherit"
