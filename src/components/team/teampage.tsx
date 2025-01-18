@@ -53,17 +53,17 @@ export function TeamPage() {
     },
     {
       quote:
-        "The platform has revolutionized the way we work. It has helped us become more efficient and productive as a team.",
-      title: "Dr. Hussain Syed",
-      designation: "Convener",
-      src: "https://vitap-backend.s3.ap-south-1.amazonaws.com/Dr_Hussain_Syed_70032_IMG_4953_SCOPE_d31f2b1b37.avif",
-    },
-    {
-      quote:
         "We are thrilled with the platform's performance and ease of use. It has helped us streamline our processes and improve overall efficiency.",
       title: "Dr.SK.KHADHEER PASHA",
       designation: "Deputy Director, Student Welfare",
       src: "https://vitap-backend.s3.ap-south-1.amazonaws.com/Dr_Khadheer_Pasha_Sk_IMG_9445_A_SASPHY_21a18e2791.avif",
+    },
+    {
+      quote:
+        "The platform has revolutionized the way we work. It has helped us become more efficient and productive as a team.",
+      title: "Dr. Hussain Syed",
+      designation: "Convener",
+      src: "https://vitap-backend.s3.ap-south-1.amazonaws.com/Dr_Hussain_Syed_70032_IMG_4953_SCOPE_d31f2b1b37.avif",
     },
     {
       quote:

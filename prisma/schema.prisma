@@ -13,18 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  SUPERADMIN
-  ADMIN
-  USER
-}
-
 model Users {
   id        Int      @id @default(autoincrement())
   email     String   @unique
-  name      String?
-  role      String   @default("USER")
-  club      String?
+  name      String
+  club      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

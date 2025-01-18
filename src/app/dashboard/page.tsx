@@ -1,14 +1,13 @@
-"use client";
-import { useSession } from "next-auth/react";
+import Dashboard from "@/components/Dashboards/Dashboard";
+import { Footer } from "@/components/Home/Fotter";
+import Navbar from "@/components/Home/Navbar";
 
 export default function Page() {
-  const session = useSession();
-
-  console.log("session", session.data);
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Protected page</p>
+    <div className="bg-black">
+      <Navbar />
+      <Dashboard />
+      <Footer />
     </div>
   );
 }

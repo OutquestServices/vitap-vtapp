@@ -24,9 +24,11 @@ export function Footer() {
         <div className="relative">
           <div className="text-white">
             <h3 className="text-lg font-bold">Contact</h3>
-            <p>Phone: 850-123-5021</p>
-            <p>Email: vtapp.convenor@vitap.ac.in</p>
-            <p>Address: VIT-AP University, Amaravathi</p>
+            <p>+91 xxxxx xxxxx</p>
+            <a href="mailto:vtapp.convenor@vitap.ac.in">
+              vtapp.convenor@vitap.ac.in
+            </a>
+            <p>VIT-AP University, Amaravathi</p>
           </div>
         </div>
 
@@ -34,15 +36,16 @@ export function Footer() {
         <div className="relative">
           <div className="text-white">
             <h3 className="text-lg font-bold">Social</h3>
+
+            <p>Instagram</p>
+            <p>Facebook</p>
+            <p>Twitter</p>
             <button
               onClick={() => signIn("google")}
               className="cursor-pointer underline bg-transparent border-none text-inherit"
             >
-              Scan QR
+              Dashboard
             </button>
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <p>Twitter</p>
           </div>
         </div>
       </div>

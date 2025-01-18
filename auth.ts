@@ -25,7 +25,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
         select: {
           email: true,
-          role: true,
           club: true,
         },
       });
