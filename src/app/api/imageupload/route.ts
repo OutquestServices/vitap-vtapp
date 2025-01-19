@@ -13,6 +13,22 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Invalid data." }, { status: 400 });
     }
 
+    const find_event = await prisma.events.findUnique({
+      where: {
+        eventId,
+      },
+    });
+
+    if (!find_event) {
+      return NextResponse.json(
+        {
+          message:
+            "Event not Found or Wrong Event Id provided. Please Contact akshay.22bce9221@vitapstudent.ac.in",
+        },
+        { status: 400 }
+      );
+    }
+
     const isExist = await prisma.posters.findUnique({
       where: {
         eventId,
@@ -38,6 +54,15 @@ export async function POST(req: Request) {
         id: true,
         eventId: true,
         image: true,
+      },
+    });
+
+    await prisma.events.update({
+      where: {
+        eventId,
+      },
+      data: {
+        eventPoster: image,
       },
     });
 

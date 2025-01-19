@@ -6,8 +6,22 @@ import { useOutsideClick } from "./use-outside-click";
 
 export function Events() {
   const [active, setActive] = useState(null);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
   const id = useId();
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      const response = await fetch("/api/fetch/events");
+      const data = await response.json();
+
+      setData(data.events);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -28,6 +42,14 @@ export function Events() {
 
   useOutsideClick(ref, () => setActive(null));
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center md:h-[60vh]">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neutral-400 dark:border-neutral-500"></div>
+      </div>
+    );
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -45,7 +67,7 @@ export function Events() {
           {active && typeof active === "object" ? (
             <div className="fixed inset-0  grid place-items-center z-[100]">
               <motion.button
-                key={`button-${active.title}-${id}`}
+                key={`button-${active.eventName}-${id}`}
                 layout
                 initial={{
                   opacity: 0,
@@ -65,17 +87,17 @@ export function Events() {
                 <CloseIcon />
               </motion.button>
               <motion.div
-                layoutId={`card-${active.title}-${id}`}
+                layoutId={`card-${active.eventName}-${id}`}
                 ref={ref}
                 className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-neutral-900 sm:rounded-3xl overflow-hidden"
               >
-                <motion.div layoutId={`image-${active.title}-${id}`}>
+                <motion.div layoutId={`image-${active.eventName}-${id}`}>
                   <Image
                     priority
                     width={200}
                     height={200}
-                    src={active.src}
-                    alt={active.title}
+                    src={active.eventPoster}
+                    alt={active.eventName}
                     className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
                   />
                 </motion.div>
@@ -84,29 +106,34 @@ export function Events() {
                   <div className="flex justify-between items-start p-4">
                     <div className="">
                       <motion.h3
-                        layoutId={`title-${active.title}-${id}`}
+                        layoutId={`title-${active.eventName}-${id}`}
                         className="font-bold text-neutral-200"
                       >
-                        {active.title}
+                        {active.eventName}
                       </motion.h3>
                       <motion.p
-                        layoutId={`description-${active.description}-${id}`}
+                        layoutId={`description-${active.eventType}-${id}`}
                         className="text-neutral-400"
                       >
-                        {active.description}
+                        {active.eventType}
                       </motion.p>
                     </div>
-
-                    <motion.a
-                      layoutId={`button-${active.title}-${id}`}
-                      href={active.ctaLink}
-                      target="_blank"
-                      className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
-                    >
-                      {active.ctaText}
-                    </motion.a>
                   </div>
-                  <div className="pt-4 relative px-4">
+                  <div className="pt-2 relative px-4">
+                    <div className="relative flex flex-col gap-2 py-4">
+                      <h1 className="text-white font-bold">
+                        Event Id -{" "}
+                        <span className="font-light">{active.eventId}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
+                        Club Name -{" "}
+                        <span className="font-light">{active.clubName}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
+                        School -{" "}
+                        <span className="font-light">{active.school}</span>{" "}
+                      </h1>
+                    </div>
                     <motion.div
                       layout
                       initial={{ opacity: 0 }}
@@ -114,9 +141,9 @@ export function Events() {
                       exit={{ opacity: 0 }}
                       className=" text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                     >
-                      {typeof active.content === "function"
-                        ? active.content()
-                        : active.content}
+                      {typeof active.eventDescription === "function"
+                        ? active.eventDescription()
+                        : active.eventDescription}
                     </motion.div>
                   </div>
                 </div>
@@ -129,7 +156,7 @@ export function Events() {
         {active && typeof active === "object" && (
           <div className="fixed inset-0 grid place-items-center z-[100]">
             <button
-              key={`button-${active.title}-${id}`}
+              key={`button-${active.eventName}-${id}`}
               className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
               onClick={() => setActive(null)}
             >
@@ -144,66 +171,90 @@ export function Events() {
                   priority
                   width={200}
                   height={200}
-                  src={active.src}
-                  alt={active.title}
+                  src={active.eventPoster}
+                  alt={active.eventName}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
 
               <div className="flex justify-between items-start p-4">
                 <div>
-                  <h3 className="font-bold text-neutral-200">{active.title}</h3>
-                  <p className="text-neutral-400">{active.description}</p>
+                  <h3 className="font-bold text-neutral-200">
+                    {active.eventName}
+                  </h3>
+                  <p className="text-white">{active.eventType}</p>
                 </div>
                 <a
-                  href={active.ctaLink}
+                  href={active.link}
                   target="_blank"
                   className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
                 >
-                  {active.ctaText}
+                  Register
                 </a>
               </div>
-              <div className="pt-4 relative px-4 overflow-auto text-neutral-400">
-                {typeof active.content === "function"
-                  ? active.content()
-                  : active.content}
+              <div className="pt-2 relative px-4 overflow-auto text-neutral-400">
+                <div className="relative flex flex-col gap-2 py-4">
+                  <h1 className="text-white font-bold">
+                    Event Id -{" "}
+                    <span className="font-light">{active.eventId}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Club Name -{" "}
+                    <span className="font-light">{active.clubName}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    School - <span className="font-light">{active.school}</span>{" "}
+                  </h1>
+                </div>
+                {typeof active.eventDescription === "function"
+                  ? active.eventDescription()
+                  : active.eventDescription}
               </div>
             </div>
           </div>
         )}
       </div>
 
-      <ul className="max-w-5xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start gap-4">
-        {cards.map((card, index) => (
+      <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start gap-4">
+        {data.map((card, index) => (
           <motion.div
-            layoutId={`card-${card.title}-${id}`}
-            key={card.title}
+            layoutId={`card-${card.eventName}-${id}`}
+            key={card.eventName}
             onClick={() => setActive(card)}
             className="p-4 flex flex-col  hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col  w-full">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
+              <motion.div layoutId={`image-${card.eventName}-${id}`}>
                 <Image
                   width={100}
                   height={100}
-                  src={card.src}
-                  alt={card.title}
-                  className="h-40 md:h-60 w-full  rounded-lg object-cover object-top"
+                  src={card.eventPoster}
+                  alt={card.eventName}
+                  className="h-40 md:h-60 w-full rounded-lg object-fill object-top"
                 />
               </motion.div>
               <div className="flex justify-center items-center flex-col">
                 <motion.h3
-                  layoutId={`title-${card.title}-${id}`}
+                  layoutId={`title-${card.eventName}-${id}`}
                   className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
                 >
-                  {card.title}
+                  {card.eventName}
                 </motion.h3>
                 <motion.p
-                  layoutId={`description-${card.description}-${id}`}
+                  layoutId={`description-${card.eventType}-${id}`}
                   className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
                 >
-                  {card.description}
+                  {card.eventType}
                 </motion.p>
+              </div>
+              <div className="justify-center items-center hidden md:flex">
+                <a
+                  href={card.link}
+                  target="_blank"
+                  className="px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
+                >
+                  Register
+                </a>
               </div>
             </div>
           </motion.div>
@@ -245,185 +296,3 @@ export const CloseIcon = () => {
     </motion.svg>
   );
 };
-
-const cards = [
-  {
-    description: "Lana Del Rey",
-    title: "Summertime Sadness",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Lana Del Rey, an iconic American singer-songwriter, is celebrated for
-          her melancholic and cinematic music style. Born Elizabeth Woolridge
-          Grant in New York City, she has captivated audiences worldwide with
-          her haunting voice and introspective lyrics. <br /> <br />
-          Her songs often explore themes of tragic romance, glamour, and
-          melancholia, drawing inspiration from both contemporary and vintage
-          pop culture. With a career that has seen numerous critically acclaimed
-          albums, Lana Del Rey has established herself as a unique and
-          influential figure in the music industry, earning a dedicated fan base
-          and numerous accolades.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Babbu Maan",
-    title: "Mitran Di Chhatri",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful
-          voice and profound lyrics that resonate deeply with his audience. Born
-          in the village of Khant Maanpur in Punjab, India, he has become a
-          cultural icon in the Punjabi music industry. <br /> <br />
-          His songs often reflect the struggles and triumphs of everyday life,
-          capturing the essence of Punjabi culture and traditions. With a career
-          spanning over two decades, Babu Maan has released numerous hit albums
-          and singles that have garnered him a massive fan following both in
-          India and abroad.
-        </p>
-      );
-    },
-  },
-
-  {
-    description: "Metallica",
-    title: "For Whom The Bell Tolls",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Metallica, an iconic American heavy metal band, is renowned for their
-          powerful sound and intense performances that resonate deeply with
-          their audience. Formed in Los Angeles, California, they have become a
-          cultural icon in the heavy metal music industry. <br /> <br />
-          Their songs often reflect themes of aggression, social issues, and
-          personal struggles, capturing the essence of the heavy metal genre.
-          With a career spanning over four decades, Metallica has released
-          numerous hit albums and singles that have garnered them a massive fan
-          following both in the United States and abroad.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Led Zeppelin",
-    title: "Stairway To Heaven",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Led Zeppelin, a legendary British rock band, is renowned for their
-          innovative sound and profound impact on the music industry. Formed in
-          London in 1968, they have become a cultural icon in the rock music
-          world. <br /> <br />
-          Their songs often reflect a blend of blues, hard rock, and folk music,
-          capturing the essence of the 1970s rock era. With a career spanning
-          over a decade, Led Zeppelin has released numerous hit albums and
-          singles that have garnered them a massive fan following both in the
-          United Kingdom and abroad.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Mustafa Zahid",
-    title: "Toh Phir Aao",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          "Aawarapan", a Bollywood movie starring Emraan Hashmi, is renowned for
-          its intense storyline and powerful performances. Directed by Mohit
-          Suri, the film has become a significant work in the Indian film
-          industry. <br /> <br />
-          The movie explores themes of love, redemption, and sacrifice,
-          capturing the essence of human emotions and relationships. With a
-          gripping narrative and memorable music, "Aawarapan" has garnered a
-          massive fan following both in India and abroad, solidifying Emraan
-          Hashmi's status as a versatile actor.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Arijit Singh",
-    title: "Tum Hi Ho",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Arijit Singh, a legendary Indian playback singer, is renowned for his
-          soulful voice and profound lyrics that resonate deeply with his
-          audience. Born in Jiaganj, Murshidabad, West Bengal, he has become a
-          cultural icon in the Indian music industry. <br /> <br />
-          His songs often reflect themes of love, heartbreak, and longing,
-          capturing the essence of human emotions and relationships. With a
-          career spanning over a decade, Arijit Singh has released numerous hit
-          songs and albums that have garnered him a massive fan following both
-          in India and abroad.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Nusrat Fateh Ali Khan",
-    title: "Tere Bin Nahi Lagda",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Nusrat Fateh Ali Khan, a legendary Pakistani Qawwali singer, is
-          celebrated for his powerful voice and soul-stirring performances that
-          resonate deeply with his audience. Born in Faisalabad, Pakistan, he
-          has become a cultural icon in the South Asian music industry. <br />{" "}
-          <br />
-          His songs often explore themes of devotion, spirituality, and love,
-          capturing the essence of Qawwali music. With a career that has seen
-          numerous critically acclaimed albums, Nusrat Fateh Ali Khan has
-          established himself as a unique and influential figure in the music
-          world, earning a dedicated fan base and numerous accolades.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Atif Aslam",
-    title: "Tera Hone Laga Hoon",
-    src: "/tshirt.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          At if Aslam, a legendary Pakistani playback singer, is renowned for
-          his soulful voice and profound lyrics that resonate deeply with his
-          audience. Born in Wazirabad, Pakistan, he has become a cultural icon
-          in the Pakistani music industry. <br /> <br />
-          His songs often reflect themes of love, heartbreak, and longing,
-          capturing the essence of human emotions and relationships. With a
-          career spanning over two decades, Atif Aslam has released numerous hit
-          songs and albums that have garnered him a massive fan following both
-          in Pakistan and abroad.
-        </p>
-      );
-    },
-  },
-];

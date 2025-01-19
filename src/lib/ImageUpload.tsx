@@ -42,7 +42,7 @@ export async function uploadFileToS3(file: File): Promise<string> {
       throw new Error("Failed to upload file");
     }
 
-    return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
+    return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/vtapp/${fileName}`;
   } catch (err: any) {
     console.error("Error uploading file:", err.message || err);
     throw new Error(err.message || "File upload failed");

@@ -29,3 +29,18 @@ model Posters {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Events {
+  id               Int    @id @default(autoincrement())
+  eventId          String @unique
+  emailAddress     String
+  employeeId       String
+  employeeName     String
+  school           String
+  clubName         String
+  eventName        String
+  eventType        String
+  eventDescription String
+  eventPoster      String @default("https://universitywebsitbucket.s3.ap-south-1.amazonaws.com/Images/dummy_event_image.jpg")
+  link             String @default("https://vtop.vitap.ac.in")
+}

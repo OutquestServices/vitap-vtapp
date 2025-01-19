@@ -77,9 +77,18 @@ export default function UploadImage() {
         <div className="bg-gray-700 p-4 rounded-md mb-6">
           <ul className="list-disc list-inside text-gray-300 text-sm">
             <li>Only image files (e.g., .jpg, .jpeg, .png) can be uploaded.</li>
+            <li>Each Image size should not exceed 10MB</li>
             <li>Each event ID can have only one image uploaded.</li>
             <li>
               Once an image is uploaded for an event ID, it cannot be changed.
+            </li>
+            <li>
+              Sample Event Id - <span className="font-bold">SCOPE_V25_1</span> -
+              There should be no smallcase all alphabets should be in Uppercase
+            </li>
+            <li>
+              Mandatory File Name Format: Include the Event ID in the file name.
+              Example: <span className="font-bold">SCOPE_V25_1.jpg</span>
             </li>
             <li>
               If you need to change the image, please contact at{" "}

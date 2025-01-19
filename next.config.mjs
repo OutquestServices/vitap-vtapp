@@ -8,7 +8,11 @@ const nextConfig = {
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
   },
   images: {
-    domains: ["www.vitap.ac.in", "vitap-backend.s3.ap-south-1.amazonaws.com"],
+    domains: [
+      "www.vitap.ac.in",
+      "vitap-backend.s3.ap-south-1.amazonaws.com",
+      "universitywebsitbucket.s3.ap-south-1.amazonaws.com",
+    ],
   },
 };
 
