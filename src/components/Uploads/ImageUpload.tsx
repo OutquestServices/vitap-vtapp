@@ -70,7 +70,7 @@ export default function UploadImage() {
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="bg-gray-800 p-6 md:p-8 rounded-lg shadow-md w-full max-w-sm sm:max-w-md">
         <h1 className="text-2xl font-bold text-white mb-6 text-center">
-          Create New Instructor
+          Upload Poster
         </h1>
 
         {/* Notes Section */}
@@ -118,7 +118,7 @@ export default function UploadImage() {
               htmlFor="instructorImage"
               className="block text-sm font-medium text-gray-300"
             >
-              Instructor Image
+              Poster
             </label>
             <div
               className={`mt-1 w-full h-40 sm:h-48 flex items-center justify-center border-2 ${
