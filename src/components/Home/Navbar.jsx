@@ -36,19 +36,21 @@ export default function Navbar() {
     {
       title: "Sponsors",
       icon: <IconHeartHandshake color="white" />,
-      href: "#",
+      href: "/sponsors",
     },
   ];
   return (
     <div className="relative z-30 w-full flex items-center justify-between px-6 pt-2">
-      <div className="relative w-[120px] h-[60px] md:w-[200px] md:h-[80px]">
-        <Image
-          src="/vtapp.png"
-          layout="fill"
-          objectFit="contain"
-          alt="VT App Logo"
-        />
-      </div>
+      <a href="/">
+        <div className="relative w-[120px] h-[60px] md:w-[200px] md:h-[80px]">
+          <Image
+            src="/vtapp.png"
+            layout="fill"
+            objectFit="contain"
+            alt="VT App Logo"
+          />
+        </div>
+      </a>
       <div className=" relative w-auto items-center justify-center">
         <FloatingDock items={items} />
       </div>

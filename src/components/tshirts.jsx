@@ -34,10 +34,10 @@ export function Tshirts() {
             className="py-4 relative z-20"
           >
             <h2 className="text-white text-2xl text-left font-bold">
-              Apple Vision Pro
+              T  Shirt
             </h2>
             <p className="text-neutral-200 text-left mt-4">
-              The all-new apple vision pro was the best thing that happened around 8 months ago, not anymore.
+              V-TAPP 2025 T-Shirt
             </p>
           </motion.div>
         </div>

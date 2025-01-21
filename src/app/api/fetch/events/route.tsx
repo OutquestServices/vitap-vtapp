@@ -18,6 +18,7 @@ export async function GET() {
         eventType: true,
         eventDescription: true,
         eventPoster: true,
+        link: true,
       },
       orderBy: {
         id: "asc",

@@ -29,21 +29,21 @@ export async function POST(req: Request) {
       );
     }
 
-    const isExist = await prisma.posters.findUnique({
-      where: {
-        eventId,
-      },
-    });
+    // const isExist = await prisma.posters.findUnique({
+    //   where: {
+    //     eventId,
+    //   },
+    // });
 
-    if (isExist) {
-      return NextResponse.json(
-        {
-          message:
-            "Image already uploaded for this event. Please Contact to update the Image",
-        },
-        { status: 400 }
-      );
-    }
+    // if (isExist) {
+    //   return NextResponse.json(
+    //     {
+    //       message:
+    //         "Image already uploaded for this event. Please Contact to update the Image",
+    //     },
+    //     { status: 400 }
+    //   );
+    // }
 
     const response = await prisma.posters.create({
       data: {

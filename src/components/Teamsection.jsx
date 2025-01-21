@@ -104,7 +104,7 @@ export function Team() {
             Our sponsors help us bring you the best experience possible. We are
             grateful for their support and dedication to our mission.
           </p>
-          <a className="bg-white text-black p-2 rounded-md" href="#">
+          <a className="bg-white text-black p-2 rounded-md" href="/sponsors">
             View Sponsors
           </a>
         </div>

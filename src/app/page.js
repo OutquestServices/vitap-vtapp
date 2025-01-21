@@ -9,7 +9,7 @@ export default function Page() {
     <div>
       <Hero />
       <About />
-      <Team />
+      {/* <Team /> */}
       <Tshirts />
       <Footer />
     </div>

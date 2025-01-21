@@ -45,7 +45,7 @@ export function Events() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center md:h-[60vh]">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neutral-400 dark:border-neutral-500"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neutral-500"></div>
       </div>
     );
   }
@@ -98,7 +98,7 @@ export function Events() {
                     height={200}
                     src={active.eventPoster}
                     alt={active.eventName}
-                    className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                    className="w-full h-96 sm:rounded-tr-lg sm:rounded-tl-lg object-fill object-top"
                   />
                 </motion.div>
 
@@ -154,10 +154,10 @@ export function Events() {
       </div>
       <div className="md:hidden">
         {active && typeof active === "object" && (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
+          <div className="fixed inset-0 grid place-items-center z-20">
             <button
               key={`button-${active.eventName}-${id}`}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6 z-30"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
@@ -173,7 +173,7 @@ export function Events() {
                   height={200}
                   src={active.eventPoster}
                   alt={active.eventName}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-contain object-top"
                 />
               </div>
 
@@ -215,13 +215,12 @@ export function Events() {
         )}
       </div>
 
-      <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start gap-4">
+      <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start md:gap-4 pr-2">
         {data.map((card, index) => (
           <motion.div
             layoutId={`card-${card.eventName}-${id}`}
             key={card.eventName}
-            onClick={() => setActive(card)}
-            className="p-4 flex flex-col  hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            className="z-10 p-4 flex flex-col  hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col  w-full">
               <motion.div layoutId={`image-${card.eventName}-${id}`}>
@@ -231,18 +230,19 @@ export function Events() {
                   src={card.eventPoster}
                   alt={card.eventName}
                   className="h-40 md:h-60 w-full rounded-lg object-fill object-top"
+                  onClick={() => setActive(card)}
                 />
               </motion.div>
               <div className="flex justify-center items-center flex-col">
                 <motion.h3
                   layoutId={`title-${card.eventName}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
+                  className="font-medium text-neutral-200 text-center md:text-left text-base"
                 >
                   {card.eventName}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.eventType}-${id}`}
-                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
+                  className="text-neutral-400 text-center md:text-left text-base"
                 >
                   {card.eventType}
                 </motion.p>
@@ -251,7 +251,7 @@ export function Events() {
                 <a
                   href={card.link}
                   target="_blank"
-                  className="px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
+                  className=" px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
                 >
                   Register
                 </a>
