@@ -140,6 +140,14 @@ export function Events({ eventId }) {
                         <span className="font-light">{active.eventId}</span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
+                        Category -{" "}
+                        <span className="font-light">{active.eventType}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
+                        Sub Category -{" "}
+                        <span className="font-light">{active.eventName}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
                         Club Name - School:{" "}
                         <span className="font-light">{active.clubName} - {active.school}</span>{" "}
                       </h1>
@@ -222,6 +230,14 @@ export function Events({ eventId }) {
                   <h1 className="text-white font-bold">
                     Event Id -{" "}
                     <span className="font-light">{active.eventId}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Category -{" "}
+                    <span className="font-light">{active.eventType}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Sub Category -{" "}
+                    <span className="font-light">{active.eventName}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Club Name - School: {" "}

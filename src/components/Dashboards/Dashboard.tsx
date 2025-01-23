@@ -1,6 +1,13 @@
+'use client'
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home() {
+
+  const session = useSession();
+
+  console.log(session);
+
   return (
     <div className="bg-black min-h-[60vh] flex flex-col items-center justify-center gap-10">
       <div className="bg-gray-700 p-4 rounded-md mb-6">

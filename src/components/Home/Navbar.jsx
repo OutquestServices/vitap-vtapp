@@ -8,10 +8,8 @@ import {
   IconTicket,
   IconUsers,
 } from "@tabler/icons-react/dist/esm/tabler-icons-react";
-import { useState } from "react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const items = [
     {
       title: "Home",
@@ -55,7 +53,7 @@ export default function Navbar() {
         <FloatingDock items={items} />
       </div>
       <div className="relative w-[200px] h-[80px] hidden md:block">
-        <a href="/tickets">
+        <a href="#">
           <Button>Grab Tickets</Button>
         </a>
       </div>

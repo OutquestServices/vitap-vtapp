@@ -15,7 +15,7 @@ datasource db {
 
 model Users {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
+  email     String   
   name      String
   club      String
   createdAt DateTime @default(now())

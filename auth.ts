@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ user, account, profile }) {
       // Check if the user is allowed to sign in
-      const isValidUser = await prisma.users.findUnique({
+      const isValidUser = await prisma.users.findFirst({
         where: {
           email: user.email as string,
         },
