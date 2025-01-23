@@ -24,7 +24,7 @@ model Users {
 
 model Posters {
   id        Int      @id @default(autoincrement())
-  eventId   String   @unique
+  eventId   String
   image     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
