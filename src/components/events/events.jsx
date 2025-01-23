@@ -4,12 +4,23 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "./use-outside-click";
 
-export function Events() {
+export function Events({ eventId }) {
   const [active, setActive] = useState(null);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
   const id = useId();
+
+  useEffect(() => {
+    if (eventId) {
+      const event = data.find((event) => event.eventId === eventId);
+      if (event) {
+        setActive(event);
+      } else {
+        setActive(null);
+      }
+    }
+  }, [eventId, data]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -115,23 +126,34 @@ export function Events() {
                         layoutId={`description-${active.eventType}-${id}`}
                         className="text-neutral-400"
                       >
-                        {active.eventType}
+                        {active.eventType} - ₹ {active.amount}
                       </motion.p>
                     </div>
                   </div>
-                  <div className="pt-2 relative px-4">
-                    <div className="relative flex flex-col gap-2 py-4">
+                  <div className="relative px-4">
+                    <div className="relative flex flex-col gap-2">
+                      <h1 className="text-white font-bold">
+                        <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
+                      </h1>
                       <h1 className="text-white font-bold">
                         Event Id -{" "}
                         <span className="font-light">{active.eventId}</span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
-                        Club Name -{" "}
-                        <span className="font-light">{active.clubName}</span>{" "}
+                        Club Name - School:{" "}
+                        <span className="font-light">{active.clubName} - {active.school}</span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
-                        School -{" "}
-                        <span className="font-light">{active.school}</span>{" "}
+                        Name -{" "}
+                        <span className="font-light">{active.studentCoordinatorName}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
+                        Email -{" "}
+                        <a className="font-light" href={`mailto:${active.studentCoordinatorEmail}`}>{active.studentCoordinatorEmail}</a>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
+                        Phone -{" "}
+                        <span className="font-light">{active.studentCoordinatorPhone}</span>{" "}
                       </h1>
                     </div>
                     <motion.div
@@ -139,7 +161,7 @@ export function Events() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className=" text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                      className="pt-2 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                     >
                       {typeof active.eventDescription === "function"
                         ? active.eventDescription()
@@ -195,15 +217,30 @@ export function Events() {
               <div className="pt-2 relative px-4 overflow-auto text-neutral-400">
                 <div className="relative flex flex-col gap-2 py-4">
                   <h1 className="text-white font-bold">
+                    <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
                     Event Id -{" "}
                     <span className="font-light">{active.eventId}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
-                    Club Name -{" "}
-                    <span className="font-light">{active.clubName}</span>{" "}
+                    Club Name - School: {" "}
+                    <span className="font-light">{active.clubName} - {active.school}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     School - <span className="font-light">{active.school}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Coordinator Name -{" "}
+                    <span className="font-light">{active.studentCoordinatorName}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Email -{" "}
+                    <a className="font-light" href={`mailto:${active.studentCoordinatorEmail}`}>{active.studentCoordinatorEmail}</a>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    Phone -{" "}
+                    <span className="font-light">{active.studentCoordinatorPhone}</span>{" "}
                   </h1>
                 </div>
                 {typeof active.eventDescription === "function"
@@ -240,12 +277,11 @@ export function Events() {
                 >
                   {card.eventName}
                 </motion.h3>
-                <motion.p
-                  layoutId={`description-${card.eventType}-${id}`}
+                <p
                   className="text-neutral-400 text-center md:text-left text-base"
                 >
-                  {card.eventType}
-                </motion.p>
+                  {card.amount === 0 ? "Free" : "₹ " + card.amount}
+                </p>
               </div>
               <div className="justify-center items-center hidden md:flex">
                 <a

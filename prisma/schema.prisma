@@ -31,16 +31,25 @@ model Posters {
 }
 
 model Events {
-  id               Int    @id @default(autoincrement())
-  eventId          String @unique
-  emailAddress     String
-  employeeId       String
-  employeeName     String
-  school           String
-  clubName         String
-  eventName        String
-  eventType        String
-  eventDescription String
-  eventPoster      String @default("https://universitywebsitbucket.s3.ap-south-1.amazonaws.com/Images/dummy_event_image.jpg")
-  link             String @default("https://vtop.vitap.ac.in")
+  id                      Int    @id @default(autoincrement())
+  eventId                 String @unique
+  amount                  Int
+  startDate               String
+  endDate                 String
+  startTime               String
+  endTime                 String
+  studentCoordinatorName  String 
+  studentCoordinatorEmail String 
+  studentCoordinatorId    String 
+  studentCoordinatorPhone String 
+  emailAddress            String
+  employeeId              String
+  employeeName            String
+  school                  String
+  clubName                String
+  eventName               String
+  eventType               String
+  eventDescription        String
+  eventPoster             String
+  link                    String
 }
