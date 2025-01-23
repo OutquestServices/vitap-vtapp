@@ -20,7 +20,7 @@ export function About() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/about.png"
+              src="/about.avif"
               alt="hero"
               className="rounded-2xl object-cover"
               draggable={false}
