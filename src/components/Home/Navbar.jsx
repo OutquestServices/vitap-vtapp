@@ -48,7 +48,7 @@ export default function Navbar() {
         <FloatingDock items={items} />
       </div>
       <div className="relative w-[200px] h-[80px] hidden md:block">
-        <a href="#">
+        <a href="https://events.vitap.ac.in/e/v-tapp-2025-56ef13f9-9cc5-4472-a440-81af43ff7425">
           <Button>Register Now</Button>
         </a>
       </div>
