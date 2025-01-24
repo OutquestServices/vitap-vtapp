@@ -34,7 +34,7 @@ export function Footer() {
         <div className="relative md:top-5">
           <div className="text-white">
             <h3 className="text-lg font-bold">Contact</h3>
-            <p>Sri Vardhan - 9347705113</p>
+            <p>Sri Vardhan Yeluri - 9347705113</p>
             <p>Chandra - 9391442966</p>
             <p>Charitha - 7995297084</p>
             <p>Abhinay - 8919272643</p>

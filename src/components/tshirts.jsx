@@ -39,6 +39,9 @@ export function Tshirts() {
             <p className="text-neutral-200 text-left mt-4">
               V-TAPP 2025 T-Shirt
             </p>
+            <p className="text-neutral-200 text-left mt-4">
+              ₹ 300
+            </p>
             <a
               href="https://events.vitap.ac.in/e/vtapp-2025-t-shirt-registrationvit-ap-students-d5f57cfe-bfda-4b9c-be80-c4b27f351a21" target="_blank"
               className="inline-block bg-blue-500 text-white text-left mt-4 px-6 py-2 rounded hover:bg-blue-600 transition-colors"
