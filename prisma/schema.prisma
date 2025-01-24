@@ -15,7 +15,7 @@ datasource db {
 
 model Users {
   id        Int      @id @default(autoincrement())
-  email     String   
+  email     String
   name      String
   club      String
   createdAt DateTime @default(now())
@@ -38,10 +38,10 @@ model Events {
   endDate                 String
   startTime               String
   endTime                 String
-  studentCoordinatorName  String 
-  studentCoordinatorEmail String 
-  studentCoordinatorId    String 
-  studentCoordinatorPhone String 
+  studentCoordinatorName  String
+  studentCoordinatorEmail String
+  studentCoordinatorId    String
+  studentCoordinatorPhone String
   emailAddress            String
   employeeId              String
   employeeName            String
@@ -49,6 +49,7 @@ model Events {
   clubName                String
   eventName               String
   eventType               String
+  subEventType            String @default("N/A")
   eventDescription        String
   eventPoster             String
   link                    String

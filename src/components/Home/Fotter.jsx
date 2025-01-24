@@ -23,13 +23,25 @@ export function Footer() {
         {/* Contact and Social Information */}
         <div className="relative md:top-5">
           <div className="text-white">
-            <h3 className="text-lg font-bold">Contact</h3>
+            <h3 className="text-lg font-bold">Email</h3>
             <a href="mailto:vtapp.convenor@vitap.ac.in">
               vtapp.convenor@vitap.ac.in
             </a>
             <p>VIT-AP University, Amaravathi</p>
           </div>
         </div>
+
+        <div className="relative md:top-5">
+          <div className="text-white">
+            <h3 className="text-lg font-bold">Contact</h3>
+            <p>Sri Vardhan - 9347705113</p>
+            <p>Chandra - 9391442966</p>
+            <p>Charitha - 7995297084</p>
+            <p>Abhinay - 8919272643</p>
+            <p>Apuroop - 9398244005</p>
+          </div>
+        </div>
+
 
         {/* Social and QR */}
         <div className="relative md:top-5">

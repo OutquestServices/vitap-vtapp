@@ -16,6 +16,7 @@ export async function GET() {
         clubName: true,
         eventName: true,
         eventType: true,
+        subEventType: true,
         eventDescription: true,
         eventPoster: true,
         link: true,

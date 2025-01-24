@@ -145,7 +145,7 @@ export function Events({ eventId }) {
                       </h1>
                       <h1 className="text-white font-bold">
                         Sub Category -{" "}
-                        <span className="font-light">{active.eventName}</span>{" "}
+                        <span className="font-light">{active.subEventType}</span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Club Name - School:{" "}
@@ -237,7 +237,7 @@ export function Events({ eventId }) {
                   </h1>
                   <h1 className="text-white font-bold">
                     Sub Category -{" "}
-                    <span className="font-light">{active.eventName}</span>{" "}
+                    <span className="font-light">{active.subEventType}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Club Name - School: {" "}
