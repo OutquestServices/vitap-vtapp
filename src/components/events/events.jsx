@@ -7,6 +7,7 @@ import { useOutsideClick } from "./use-outside-click";
 export function Events({ eventId }) {
   const [active, setActive] = useState(null);
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
   const id = useId();
@@ -29,6 +30,7 @@ export function Events({ eventId }) {
       const data = await response.json();
 
       setData(data.events);
+      setFilteredData(data.events);
       setIsLoading(false);
     };
     fetchData();
@@ -266,7 +268,7 @@ export function Events({ eventId }) {
       </div>
 
       <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start md:gap-4 pr-2">
-        {data.map((card, index) => (
+        {filteredData.map((card, index) => (
           <motion.div
             layoutId={`card-${card.eventName}-${id}`}
             key={card.eventName}
