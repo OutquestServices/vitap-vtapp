@@ -24,7 +24,8 @@ export function Footer() {
         <div className="relative md:top-5">
           <div className="text-white">
             <h3 className="text-lg font-bold">Contact</h3>
-            <p>+91 xxxxx xxxxx</p>
+            <p>Sri Vardhan - 9347705113</p>
+            <p>Chandra - 9391442966</p>
             <a href="mailto:vtapp.convenor@vitap.ac.in">
               vtapp.convenor@vitap.ac.in
             </a>
