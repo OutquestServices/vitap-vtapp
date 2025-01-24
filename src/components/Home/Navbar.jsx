@@ -17,11 +17,6 @@ export default function Navbar() {
       href: "/",
     },
     {
-      title: "Schedule",
-      icon: <IconCalendarEventFilled color="white" />,
-      href: "#",
-    },
-    {
       title: "Events",
       icon: <IconTicket color="white" />,
       href: "/events",

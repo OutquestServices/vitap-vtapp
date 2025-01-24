@@ -244,9 +244,6 @@ export function Events({ eventId }) {
                     <span className="font-light">{active.clubName} - {active.school}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
-                    School - <span className="font-light">{active.school}</span>{" "}
-                  </h1>
-                  <h1 className="text-white font-bold">
                     Coordinator Name -{" "}
                     <span className="font-light">{active.studentCoordinatorName}</span>{" "}
                   </h1>
