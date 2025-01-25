@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true, // Enabled strict mode for better TypeScript safety
@@ -18,14 +14,9 @@
     "jsx": "preserve",
     "baseUrl": ".", // Ensure this is set to the project root
     "paths": {
-      "@/*": [
-        "./src/*"
-      ] // Updated to assume your source files are under `src`
+      "@/*": ["./src/*"] // Updated to assume your source files are under `src`
     },
-    "types": [
-      "node"
-    ] // Explicitly include Node.js types for compatibility
-    ,
+    "types": ["node"], // Explicitly include Node.js types for compatibility
     "plugins": [
       {
         "name": "next"
@@ -35,10 +26,10 @@
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
+    "next-auth.d.ts",
+    "types",
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

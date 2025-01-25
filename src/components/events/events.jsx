@@ -7,7 +7,6 @@ import { useOutsideClick } from "./use-outside-click";
 export function Events({ eventId }) {
   const [active, setActive] = useState(null);
   const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
   const id = useId();
@@ -30,7 +29,6 @@ export function Events({ eventId }) {
       const data = await response.json();
 
       setData(data.events);
-      setFilteredData(data.events);
       setIsLoading(false);
     };
     fetchData();
@@ -135,7 +133,10 @@ export function Events({ eventId }) {
                   <div className="relative px-4">
                     <div className="relative flex flex-col gap-2">
                       <h1 className="text-white font-bold">
-                        <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
+                        <span className="font-light">
+                          {active.startDate} {active.startTime} -{" "}
+                          {active.endDate} {active.endTime}
+                        </span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Event Id -{" "}
@@ -147,23 +148,36 @@ export function Events({ eventId }) {
                       </h1>
                       <h1 className="text-white font-bold">
                         Sub Category -{" "}
-                        <span className="font-light">{active.subEventType}</span>{" "}
+                        <span className="font-light">
+                          {active.subEventType}
+                        </span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Club Name - School:{" "}
-                        <span className="font-light">{active.clubName} - {active.school}</span>{" "}
+                        <span className="font-light">
+                          {active.clubName} - {active.school}
+                        </span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Name -{" "}
-                        <span className="font-light">{active.studentCoordinatorName}</span>{" "}
+                        <span className="font-light">
+                          {active.studentCoordinatorName}
+                        </span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Email -{" "}
-                        <a className="font-light" href={`mailto:${active.studentCoordinatorEmail}`}>{active.studentCoordinatorEmail}</a>{" "}
+                        <a
+                          className="font-light"
+                          href={`mailto:${active.studentCoordinatorEmail}`}
+                        >
+                          {active.studentCoordinatorEmail}
+                        </a>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
                         Phone -{" "}
-                        <span className="font-light">{active.studentCoordinatorPhone}</span>{" "}
+                        <span className="font-light">
+                          {active.studentCoordinatorPhone}
+                        </span>{" "}
                       </h1>
                     </div>
                     <motion.div
@@ -227,7 +241,10 @@ export function Events({ eventId }) {
               <div className="pt-2 relative px-4 overflow-auto text-neutral-400">
                 <div className="relative flex flex-col gap-2 py-4">
                   <h1 className="text-white font-bold">
-                    <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
+                    <span className="font-light">
+                      {active.startDate} {active.startTime} - {active.endDate}{" "}
+                      {active.endTime}
+                    </span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Event Id -{" "}
@@ -242,20 +259,31 @@ export function Events({ eventId }) {
                     <span className="font-light">{active.subEventType}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
-                    Club Name - School: {" "}
-                    <span className="font-light">{active.clubName} - {active.school}</span>{" "}
+                    Club Name - School:{" "}
+                    <span className="font-light">
+                      {active.clubName} - {active.school}
+                    </span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Coordinator Name -{" "}
-                    <span className="font-light">{active.studentCoordinatorName}</span>{" "}
+                    <span className="font-light">
+                      {active.studentCoordinatorName}
+                    </span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Email -{" "}
-                    <a className="font-light" href={`mailto:${active.studentCoordinatorEmail}`}>{active.studentCoordinatorEmail}</a>{" "}
+                    <a
+                      className="font-light"
+                      href={`mailto:${active.studentCoordinatorEmail}`}
+                    >
+                      {active.studentCoordinatorEmail}
+                    </a>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Phone -{" "}
-                    <span className="font-light">{active.studentCoordinatorPhone}</span>{" "}
+                    <span className="font-light">
+                      {active.studentCoordinatorPhone}
+                    </span>{" "}
                   </h1>
                 </div>
                 {typeof active.eventDescription === "function"
@@ -268,7 +296,7 @@ export function Events({ eventId }) {
       </div>
 
       <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start md:gap-4 pr-2">
-        {filteredData.map((card, index) => (
+        {data.map((card, index) => (
           <motion.div
             layoutId={`card-${card.eventName}-${id}`}
             key={card.eventName}
@@ -292,9 +320,7 @@ export function Events({ eventId }) {
                 >
                   {card.eventName}
                 </motion.h3>
-                <p
-                  className="text-neutral-400 text-center md:text-left text-base"
-                >
+                <p className="text-neutral-400 text-center md:text-left text-base">
                   {card.amount === 0 ? "Free" : "₹ " + card.amount}
                 </p>
               </div>

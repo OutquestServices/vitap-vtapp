@@ -43,7 +43,6 @@ export function Footer() {
           </div>
         </div>
 
-
         {/* Social and QR */}
         <div className="relative md:top-5">
           <div className="text-white flex flex-col">
@@ -52,7 +51,9 @@ export function Footer() {
             <a href="https://www.facebook.com/vtapp.vitap/">Facebook</a>
             {/* <a>Twitter</a> */}
             <button
-              onClick={() => signIn("google")}
+              onClick={() =>
+                signIn("google", { callbackUrl: "/auth/role-bridge" })
+              }
               className="cursor-pointer underline bg-transparent border-none text-inherit"
             >
               Dashboard
