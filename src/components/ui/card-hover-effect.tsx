@@ -25,6 +25,7 @@ export const HoverEffect = ({
         className
       )}
     >
+      <h1>In Association With:</h1>
       {items.map((item, idx) => (
         <Link
           href={item?.link}
