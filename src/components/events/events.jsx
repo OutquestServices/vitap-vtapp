@@ -9,6 +9,8 @@ export function Events({ eventId }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState('');
   const ref = useRef(null);
   const id = useId();
 
@@ -17,8 +19,10 @@ export function Events({ eventId }) {
       const event = data.find((event) => event.eventId === eventId);
       if (event) {
         setActive(event);
+        setSearchTerm(eventId);
       } else {
         setActive(null);
+        setSearchTerm('');
       }
     }
   }, [eventId, data]);
@@ -55,6 +59,26 @@ export function Events({ eventId }) {
 
   useOutsideClick(ref, () => setActive(null));
 
+  useEffect(() => {
+    const filteredEvents = data.filter(event => {
+      return (
+        event.eventName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.eventId.toString().includes(searchTerm)
+      ) && (category === '' || event.eventType === category);
+    });
+    setFilteredData(filteredEvents);
+  }, [searchTerm, category, data]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const uniqueCategories = Array.from(new Set(data.map(event => event.eventType)));
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center md:h-[60vh]">
@@ -62,6 +86,7 @@ export function Events({ eventId }) {
       </div>
     );
   }
+
 
   return (
     <>
@@ -266,51 +291,74 @@ export function Events({ eventId }) {
           </div>
         )}
       </div>
-
-      <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start md:gap-4 pr-2">
-        {filteredData.map((card, index) => (
-          <motion.div
-            layoutId={`card-${card.eventName}-${id}`}
-            key={card.eventName}
-            className="z-10 p-4 flex flex-col  hover:bg-neutral-800 rounded-xl cursor-pointer"
+      <div className="">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center p-4">
+          <input
+            type="text"
+            placeholder="Search by event ID or name"
+            className="w-[300px] h-[50px] bg-white rounded-md p-2"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <select
+            className="w-[300px] h-[50px] bg-white rounded-md p-2"
+            value={category}
+            onChange={handleCategoryChange}
           >
-            <div className="flex gap-4 flex-col  w-full">
-              <motion.div layoutId={`image-${card.eventName}-${id}`}>
-                <Image
-                  width={100}
-                  height={100}
-                  src={card.eventPoster}
-                  alt={card.eventName}
-                  className="h-40 md:h-60 w-full rounded-lg object-fill object-top"
-                  onClick={() => setActive(card)}
-                />
-              </motion.div>
-              <div className="flex justify-center items-center flex-col">
-                <motion.h3
-                  layoutId={`title-${card.eventName}-${id}`}
-                  className="font-medium text-neutral-200 text-center md:text-left text-base"
-                >
-                  {card.eventName}
-                </motion.h3>
-                <p
-                  className="text-neutral-400 text-center md:text-left text-base"
-                >
-                  {card.amount === 0 ? "Free" : "₹ " + card.amount}
-                </p>
+            <option value="">All Categories</option>
+            {uniqueCategories.map((type, index) => (
+              <option key={index} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <ul className="max-w-6xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start md:gap-4 pr-2">
+          {filteredData.map((card, index) => (
+            <motion.div
+              layoutId={`card-${card.eventName}-${id}`}
+              key={card.eventName}
+              className="z-10 p-4 flex flex-col  hover:bg-neutral-800 rounded-xl cursor-pointer"
+            >
+              <div className="flex gap-4 flex-col  w-full">
+                <motion.div layoutId={`image-${card.eventName}-${id}`}>
+                  <Image
+                    width={100}
+                    height={100}
+                    src={card.eventPoster}
+                    alt={card.eventName}
+                    className="h-40 md:h-60 w-full rounded-lg object-fill object-top"
+                    onClick={() => setActive(card)}
+                  />
+                </motion.div>
+                <div className="flex justify-center items-center flex-col">
+                  <motion.h3
+                    layoutId={`title-${card.eventName}-${id}`}
+                    className="font-medium text-neutral-200 text-center md:text-left text-base"
+                  >
+                    {card.eventName}
+                  </motion.h3>
+                  <p
+                    className="text-neutral-400 text-center md:text-left text-base"
+                  >
+                    {card.amount === 0 ? "Free" : "₹ " + card.amount}
+                  </p>
+                </div>
+                <div className="justify-center items-center hidden md:flex">
+                  <a
+                    href={card.link}
+                    target="_blank"
+                    className=" px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
+                  >
+                    Register
+                  </a>
+                </div>
               </div>
-              <div className="justify-center items-center hidden md:flex">
-                <a
-                  href={card.link}
-                  target="_blank"
-                  className=" px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
-                >
-                  Register
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </ul>
+            </motion.div>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
