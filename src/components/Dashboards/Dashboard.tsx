@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiUpload, FiSearch, FiClock, FiAlertCircle } from "react-icons/fi";
@@ -39,12 +39,14 @@ export default function Home() {
         <p className="text-xl text-gray-300">
           You are not authenticated. Please sign in.
         </p>
-        <Link
-          href="/auth/signin"
+        <button
+          onClick={() =>
+            signIn("google", { callbackUrl: "/auth/role-bridge" })
+          }
           className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
         >
           Sign In
-        </Link>
+        </button>
       </motion.div>
     );
   }
@@ -120,7 +122,7 @@ export default function Home() {
         </ul>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link href="/uploadposter">
+        <Link href="/dashboard/admin/uploadposter">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -130,7 +132,7 @@ export default function Home() {
             <FiUpload className="text-lg" />
           </motion.button>
         </Link>
-        <Link href="/dashboard/scan">
+        <Link href="/dashboard/admin/scan">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -140,7 +142,7 @@ export default function Home() {
             <FiSearch className="text-lg" />
           </motion.button>
         </Link>
-        <Link href="/dashboard/history">
+        <Link href="/dashboard/admin/history">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

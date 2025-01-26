@@ -19,45 +19,47 @@ export const HoverEffect = ({
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
-        className
-      )}
-    >
-      <h1>In Association With:</h1>
-      {items.map((item, idx) => (
-        <Link
-          href={item?.link}
-          key={item?.link}
-          target="_blank"
-          className="relative group  block p-2 h-full w-full"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          <AnimatePresence>
-            {hoveredIndex === idx && (
-              <motion.span
-                className="absolute inset-0 h-full w-full bg-slate-800/[0.8] block  rounded-3xl"
-                layoutId="hoverBackground"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  transition: { duration: 0.15 },
-                }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 0.15, delay: 0.2 },
-                }}
-              />
-            )}
-          </AnimatePresence>
-          <Card>
-            <CardTitle>{item.title}</CardTitle>
-            <CardImage src={item.src} />
-          </Card>
-        </Link>
-      ))}
+    <div className="flex flex-col relative items-center justify-center">
+      <h1 className="text-white text-3xl md:text-4xl lg:text-5xl pt-10">In Association With:</h1>
+      <div
+        className={cn(
+          "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
+          className
+        )}
+      >
+        {items.map((item, idx) => (
+          <Link
+            href={item?.link}
+            key={item?.link}
+            target="_blank"
+            className="relative group  block p-2 h-full w-full"
+            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <AnimatePresence>
+              {hoveredIndex === idx && (
+                <motion.span
+                  className="absolute inset-0 h-full w-full bg-slate-800/[0.8] block  rounded-3xl"
+                  layoutId="hoverBackground"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: { duration: 0.15 },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.15, delay: 0.2 },
+                  }}
+                />
+              )}
+            </AnimatePresence>
+            <Card>
+              <CardTitle>{item.title}</CardTitle>
+              <CardImage src={item.src} />
+            </Card>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
