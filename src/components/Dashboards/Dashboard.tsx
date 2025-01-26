@@ -122,7 +122,7 @@ export default function Home() {
         </ul>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link href="/uploadposter">
+        <Link href="/dashboard/admin/uploadposter">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -132,7 +132,7 @@ export default function Home() {
             <FiUpload className="text-lg" />
           </motion.button>
         </Link>
-        <Link href="/dashboard/scan">
+        <Link href="/dashboard/admin/scan">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -142,7 +142,7 @@ export default function Home() {
             <FiSearch className="text-lg" />
           </motion.button>
         </Link>
-        <Link href="/dashboard/history">
+        <Link href="/dashboard/admin/history">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
