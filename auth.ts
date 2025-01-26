@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
 import authConfig from "./auth.config";
+
 const prisma = new PrismaClient();
 
 export const { handlers, auth } = NextAuth({
@@ -22,26 +23,30 @@ export const { handlers, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const userEmail = (user as { email: string }).email;
-
+        const userEmail = user.email as string; // type assertion, if needed
         const existingUser = await prisma.users.findFirst({
           where: { email: userEmail },
         });
 
-        // Dynamically assign role
-        token.role = existingUser ? "admin" : "user";
+        if (existingUser) {
+          token.role = "admin";
+          token.club = existingUser.club;
+        } else {
+          token.role = "user";
+          token.club = null;
+        }
       }
       return token;
     },
 
     async session({ session, token }) {
-      // Attach the role to the session object
       session.user.role = token.role;
+      session.user.club = token.club;
+
       return session;
     },
 
     async redirect({ url, baseUrl }) {
-      // Redirect to the role-bridge page after sign-in
       if (url === "/api/auth/signin" || url === baseUrl) {
         return `${baseUrl}/auth/role-bridge`;
       }
