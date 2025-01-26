@@ -49,7 +49,7 @@ export default function Navbar() {
       </div>
       <div className="relative w-[200px] h-[80px] hidden md:block">
         <a href="/events">
-          <Button>Register Now</Button>
+          <Button>Register now</Button>
         </a>
       </div>
     </div>

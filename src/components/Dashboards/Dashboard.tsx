@@ -1,28 +1,58 @@
-'use client'
+"use client";
+
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home() {
+  const { data: session, status } = useSession();
 
-  const session = useSession();
+  console.log("Session Data:", session);
+  console.log("Session Status:", status);
 
-  console.log(session);
+  if (status === "loading") {
+    return <p>Loading...</p>; // Show loading state while the session is being fetched
+  }
+
+  if (!session) {
+    return (
+      <div className="bg-black min-h-[60vh] flex flex-col items-center justify-center gap-10">
+        <p className="text-white">You are not authenticated. Please sign in.</p>
+        <Link
+          href="/auth/signin"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Sign In
+        </Link>
+      </div>
+    );
+  }
+
+  if (session?.user?.role !== "admin") {
+    return (
+      <div className="bg-black min-h-[60vh] flex flex-col items-center justify-center gap-10">
+        <p className="text-white">You are not authorized to view this page.</p>
+        <Link
+          href="/"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Return to Home
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-black min-h-[60vh] flex flex-col items-center justify-center gap-10">
       <div className="bg-gray-700 p-4 rounded-md mb-6">
         <ul className="list-disc list-inside text-gray-300 text-sm">
-          <li>Kindly Allow the camera access.</li>
+          <li>Kindly allow camera access.</li>
           <li>
-            If front camera opens kindly refresh the page then it automatically
-            open back cameera
+            If the front camera opens, refresh the page to automatically switch
+            to the back camera.
           </li>
+          <li>Check the history in case of duplicate or other issues.</li>
           <li>
-            See the history in case of any issues regharding duplicate or any
-            issues.
-          </li>
-          <li>
-            If there is any issues in login or scaning, please contact at{" "}
+            For login or scanning issues, contact{" "}
             <a
               href="mailto:akshay.22bce9221@vitapstudent.ac.in"
               className="text-blue-400 underline"
