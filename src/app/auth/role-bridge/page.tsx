@@ -17,9 +17,9 @@ export default function RoleBridgePage() {
       const role = session?.user?.role;
 
       if (role === "admin") {
-        router.push("/dashboard");
+        router.push("/dashboard/admin");
       } else {
-        router.push("/tickets");
+        router.push("/dashboard/user");
       }
     } else if (status === "unauthenticated") {
       // If user is not authenticated, redirect to sign-in
