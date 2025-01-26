@@ -22,7 +22,7 @@ function SearchParamComponent() {
   const eventId = pathname.get('eventId');
 
   return (
-    <div className="h-full bg-none flex items-center justify-center py-20 md:py-28 lg:py-32">
+    <div className="h-full bg-none flex items-center justify-center py-20 md:py-28 lg:py-20">
       <Events eventId={eventId} />
     </div>
   );

@@ -19,7 +19,7 @@ export function Tshirts() {
         <div className="relative z-10">
           <Lens hovering={hovering} setHovering={setHovering}>
             <Image
-              src="/tshirt.png"
+              src="/tshirt.jpeg"
               alt="image"
               layout="responsive"
               width={500}

@@ -18,9 +18,9 @@ export const projects = [
     src: "/sponsors/google.jpg",
     link: "https://www.google.com",
   },
-  {
-    title: "BOSCH",
-    src: "/sponsors/bosch.png",
-    link: "https://www.bosch.com",
-  },
+  // {
+  //   title: "BOSCH",
+  //   src: "/sponsors/bosch.png",
+  //   link: "https://www.bosch.com",
+  // },
 ];
