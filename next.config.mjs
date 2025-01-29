@@ -6,6 +6,8 @@ const nextConfig = {
     AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME,
     AWS_REGION: process.env.AWS_REGION,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+    NEXT_API_TOKEN: process.env.NEXT_API_TOKEN,
+    JWT_SECRET: process.env.JWT_SECRET
   },
   images: {
     domains: [

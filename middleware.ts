@@ -6,7 +6,7 @@ export async function middleware(req: Request) {
   const session = await auth();
 
   // Routes that only admins can access
-  const protectedRoutes = ["/dashboard/admin", "/dashboard/admin/scan", "/dashboard/admin/uploadposter"];
+  const protectedRoutes = ["/dashboard/admin", "/dashboard/admin/scan", "/dashboard/admin/uploadposter","/dashboard/admin/registrations"];
 
   const pathname = new URL(req.url).pathname;
   const isProtected = protectedRoutes.some((route) =>

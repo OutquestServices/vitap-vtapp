@@ -3,13 +3,10 @@
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FiUpload, FiSearch, FiClock, FiAlertCircle } from "react-icons/fi";
+import { FiUpload, FiSearch, FiClock, FiAlertCircle, FiList } from "react-icons/fi";
 
 export default function Home() {
   const { data: session, status } = useSession();
-
-  console.log("Session Data:", session);
-  console.log("Session Status:", status);
 
   if (status === "loading") {
     return (
@@ -88,10 +85,13 @@ export default function Home() {
       >
         <h2 className="text-lg font-semibold text-white mb-4">
           <span className="block">
-            Name: <span className="text-gray-300">{session?.user?.name}</span>
+            Name: <span className="text-gray-300">{session?.user?.name?.split(' ')[0]} {session?.user?.name?.split(' ')[1]}</span>
+          </span>
+          <span className="block">
+            Reg No: <span className="text-gray-300">{session?.user?.name?.split(' ')[2]}</span>
           </span>
           <span className="block mt-2">
-            Club: <span className="text-gray-300">{session?.user?.club}</span>
+            Event: <span className="text-gray-300">{session?.user?.club}</span>
           </span>
         </h2>
         <ul className="space-y-3 text-gray-300">
@@ -122,14 +122,26 @@ export default function Home() {
         </ul>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link href="/dashboard/admin/uploadposter">
+        {session?.user?.club === "all" ? (
+          <Link href="/dashboard/admin/uploadposter">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-md flex items-center justify-between w-full transition duration-300 ease-in-out"
+            >
+              <span>Upload Poster</span>
+              <FiUpload className="text-lg" />
+            </motion.button>
+          </Link>
+        ) : null}
+        <Link href="/dashboard/admin/registrations">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-md flex items-center justify-between w-full transition duration-300 ease-in-out"
           >
-            <span>Upload Poster</span>
-            <FiUpload className="text-lg" />
+            <span>Registrations</span>
+            <FiList className="text-lg" />
           </motion.button>
         </Link>
         <Link href="/dashboard/admin/scan">

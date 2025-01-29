@@ -30,7 +30,12 @@ export function Events({ eventId }) {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
-      const response = await fetch("/api/fetch/events");
+      const response = await fetch("/api/fetch/events", {
+        headers: {
+          'Authorization': `Bearer ${process.env.NEXT_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      });
       const data = await response.json();
 
       setData(data.events);
@@ -38,7 +43,8 @@ export function Events({ eventId }) {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+}, []);
+
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -163,6 +169,10 @@ export function Events({ eventId }) {
                         <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
                       </h1>
                       <h1 className="text-white font-bold">
+                        Venue -{" "}
+                        <span className="font-light">{active.venue}</span>{" "}
+                      </h1>
+                      <h1 className="text-white font-bold">
                         Event Id -{" "}
                         <span className="font-light">{active.eventId}</span>{" "}
                       </h1>
@@ -241,18 +251,29 @@ export function Events({ eventId }) {
                   </h3>
                   <p className="text-white">{active.eventType}</p>
                 </div>
-                <a
-                  href={active.link}
-                  target="_blank"
-                  className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
-                >
-                  Register
-                </a>
+                {active.isFull === true ? (
+                  <div
+                    className="px-4 py-3 text-sm rounded-full font-bold bg-gray-500 text-white"
+                  >
+                    Sold Out
+                  </div>
+                ) : (
+                  <a
+                    href={active.link}
+                    target="_blank"
+                    className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                  >
+                    Register
+                  </a>
+                )}
               </div>
               <div className="pt-2 relative px-4 overflow-auto text-neutral-400">
                 <div className="relative flex flex-col gap-2 py-4">
                   <h1 className="text-white font-bold">
                     <span className="font-light">{active.startDate} {active.startTime} - {active.endDate} {active.endTime}</span>{" "}
+                  </h1>
+                  <h1 className="text-white font-bold">
+                    <span className="font-light">{active.venue}</span>{" "}
                   </h1>
                   <h1 className="text-white font-bold">
                     Event Id -{" "}
@@ -346,13 +367,21 @@ export function Events({ eventId }) {
                   </p>
                 </div>
                 <div className="justify-center items-center hidden md:flex">
-                  <a
-                    href={card.link}
-                    target="_blank"
-                    className=" px-4 py-2 text-sm rounded-full font-bold bg-green-500 text-white"
-                  >
-                    Register
-                  </a>
+                  {card.isFull === true ? (
+                    <div
+                      className="px-4 py-3 text-sm rounded-full font-bold bg-gray-500 text-white"
+                    >
+                      Sold Out
+                    </div>
+                  ) : (
+                    <a
+                      href={card.link}
+                      target="_blank"
+                      className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                    >
+                      Register
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -47,6 +47,10 @@ export default function UploadImage() {
     try {
       const response = await fetch("/api/imageupload", {
         method: "POST",
+        headers: {
+          'Authorization': `Bearer ${process.env.NEXT_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           eventId: formData.eventId,
           image,
@@ -130,11 +134,10 @@ export default function UploadImage() {
               Poster
             </label>
             <div
-              className={`mt-1 w-full h-40 sm:h-48 flex items-center justify-center border-2 ${
-                previewImage
+              className={`mt-1 w-full h-40 sm:h-48 flex items-center justify-center border-2 ${previewImage
                   ? "border-gray-600"
                   : "border-dashed border-gray-500"
-              } rounded-md bg-gray-700 relative`}
+                } rounded-md bg-gray-700 relative`}
             >
               {previewImage ? (
                 <img

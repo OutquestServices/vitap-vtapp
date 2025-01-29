@@ -15,7 +15,7 @@ datasource db {
 
 model Users {
   id        Int      @id @default(autoincrement())
-  email     String     
+  email     String   @unique
   name      String
   club      String
   createdAt DateTime @default(now())
@@ -31,8 +31,8 @@ model Posters {
 }
 
 model Events {
-  id                      Int    @id @default(autoincrement())
-  eventId                 String @unique
+  id                      Int     @id @default(autoincrement())
+  eventId                 String  @unique
   amount                  Int
   startDate               String
   endDate                 String
@@ -49,8 +49,34 @@ model Events {
   clubName                String
   eventName               String
   eventType               String
-  subEventType            String @default("N/A")
+  subEventType            String
   eventDescription        String
   eventPoster             String
   link                    String
+  isFull                  Boolean
+  venue                   String
+}
+
+model EventRegistrations {
+  id            Int    @id @default(autoincrement())
+  name          String
+  email         String
+  designation   String
+  eventDate     String
+  eventTicket   String
+  amountPaid    String
+  purchasedDate String
+  invoiceId     String @unique
+  orderId       String @unique
+  receiptId     String @unique
+}
+
+model signInHistory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  role      String
+  club      String
+  image     String
+  createdAt DateTime @default(now())
 }

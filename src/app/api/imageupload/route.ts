@@ -9,6 +9,28 @@ export async function POST(req: Request) {
     const data = await req.json();
     const { eventId, image } = data;
 
+    const token = req.headers.get("Authorization");
+
+    if (!token) {
+      return new NextResponse(JSON.stringify({ message: "Authorization header is missing" }), {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    const token_parts = token.split(' ');
+
+    if (token_parts.length !== 2 || token_parts[0] !== "Bearer" || !token_parts[1] || token_parts[1] !== process.env.NEXT_API_TOKEN) {
+      return new NextResponse(JSON.stringify({ message: "Invalid Authorization header format" }), {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
     if (!eventId || !image) {
       return NextResponse.json({ message: "Invalid data." }, { status: 400 });
     }

@@ -30,6 +30,6 @@
     "types",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/Dashboards/Registrations.jsx"  ],
   "exclude": ["node_modules"]
 }

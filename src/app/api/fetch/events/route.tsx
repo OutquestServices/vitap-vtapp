@@ -3,11 +3,32 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-// Initialize PrismaClient outside of the function to allow Prisma to manage connection pooling.
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const token = req.headers.get("Authorization");
+
+    if (!token) {
+      return new NextResponse(JSON.stringify({ message: "Authorization header is missing" }), {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    const token_parts = token.split(' ');
+
+    if (token_parts.length !== 2 || token_parts[0] !== "Bearer" || !token_parts[1] || token_parts[1] !== process.env.NEXT_API_TOKEN) {
+      return new NextResponse(JSON.stringify({ message: "Invalid Authorization header format" }), {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
     const events = await prisma.events.findMany({
       select: {
         id: true,
@@ -28,6 +49,8 @@ export async function GET() {
         studentCoordinatorEmail: true,
         studentCoordinatorPhone: true,
         amount: true,
+        isFull: true,
+        venue: true
       },
       orderBy: {
         id: "asc",

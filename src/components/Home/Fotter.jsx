@@ -36,10 +36,10 @@ export function Footer() {
             <h3 className="text-lg font-bold">Contact</h3>
             <p>Sri Vardhan Yeluri - 9347705113</p>
             <p>Chandra - 9391442966</p>
-            <p>Vallabh - 8310619545</p>
+            {/* <p>Vallabh - 8310619545</p>
             <p>Charitha - 7995297084</p>
             <p>Abhinay - 8919272643</p>
-            <p>Apuroop - 9398244005</p>
+            <p>Apuroop - 9398244005</p> */}
           </div>
         </div>
 
